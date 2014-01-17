@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 
 import javax.imageio.ImageIO;
 
@@ -27,28 +28,52 @@ public class TwoDimensionCode {
 	 * 生成二维码(QRCode)图片 
 	 *  @param content 存储内容 
 	 *  @param imgPath 图片路径 
+	 * @throws UnsupportedEncodingException 
 	 */
-	public void encoderQRCode(String content, String imgPath) {
-		this.encoderQRCode(content, imgPath, "png", 7);
+	public void encoderQRCode(String content, String imgPath) throws UnsupportedEncodingException {
+		this.encoderQRCode(content, imgPath, "jpg", 7);
 	}
 
 	/**
 	 * 生成二维码(QRCode)图片 
 	 * @param content 存储内容 
 	 * @param output 输出流 
+	 * @throws UnsupportedEncodingException 
 	 */
-	public void encoderQRCode(String content, OutputStream output) {
-		this.encoderQRCode(content, output, "png", 7);
+	public void encoderQRCode(String content, OutputStream output) throws UnsupportedEncodingException {
+		this.encoderQRCode(content, output, "jpg", 7);
 	}
 
+	public void encoderQRCode(byte[] content, String imgPath) throws UnsupportedEncodingException {  
+      try {  
+          BufferedImage bufImg = this.qRCodeCommon(content , "jpg", 10);  
+            
+          File imgFile = new File(imgPath);  
+          // 生成二维码QRCode图片  
+          ImageIO.write(bufImg, "jpg", imgFile);  
+      } catch (Exception e) {  
+          e.printStackTrace();  
+      }
+	}
+	public void encoderQRCode(byte[] content, OutputStream output) throws UnsupportedEncodingException {
+	      try {  
+	          BufferedImage bufImg = this.qRCodeCommon(content , "jpg", 10);  
+	          // 生成二维码QRCode图片  
+	          ImageIO.write(bufImg, "jpg", output);  
+	      } catch (Exception e) {  
+	          e.printStackTrace();  
+	      }
+	}
+	
 	/** 
 	 * 生成二维码(QRCode)图片 
 	 * @param content 存储内容 
 	 * @param imgPath 图片路径 
 	 * @param imgType 图片类型 
+	 * @throws UnsupportedEncodingException 
 	 */  
-	public void encoderQRCode(String content, String imgPath, String imgType) {  
-		this.encoderQRCode(content, imgPath, imgType, 7);  
+	public void encoderQRCode(String content, String imgPath, String imgType) throws UnsupportedEncodingException {  
+		this.encoderQRCode(content, imgPath, imgType, 10);  
 	}
 	
   /** 
@@ -56,10 +81,11 @@ public class TwoDimensionCode {
    * @param content 存储内容 
    * @param output 输出流 
    * @param imgType 图片类型 
+ * @throws UnsupportedEncodingException 
    */  
-  public void encoderQRCode(String content, OutputStream output, String imgType) {  
-      this.encoderQRCode(content, output, imgType, 7);  
-  }  
+  public void encoderQRCode(String content, OutputStream output, String imgType) throws UnsupportedEncodingException {
+	this.encoderQRCode(content, output, imgType, 10);
+  }
 
   /** 
    * 生成二维码(QRCode)图片 
@@ -70,7 +96,7 @@ public class TwoDimensionCode {
    */  
   public void encoderQRCode(String content, String imgPath, String imgType, int size) {  
       try {  
-          BufferedImage bufImg = this.qRCodeCommon(content, imgType, size);  
+          BufferedImage bufImg = this.qRCodeCommon(content.getBytes("utf-8"), imgType, size);  
             
           File imgFile = new File(imgPath);  
           // 生成二维码QRCode图片  
@@ -89,7 +115,7 @@ public class TwoDimensionCode {
    */  
   public void encoderQRCode(String content, OutputStream output, String imgType, int size) {  
       try {  
-          BufferedImage bufImg = this.qRCodeCommon(content, imgType, size);  
+          BufferedImage bufImg = this.qRCodeCommon(content.getBytes("utf-8"), imgType, size);  
           // 生成二维码QRCode图片  
           ImageIO.write(bufImg, imgType, output);  
       } catch (Exception e) {  
@@ -104,7 +130,7 @@ public class TwoDimensionCode {
    * @param size 二维码尺寸 
    * @return 
    */  
-  private BufferedImage qRCodeCommon(String content, String imgType, int size) {  
+  private BufferedImage qRCodeCommon(byte[] contentBytes, String imgType, int size) {  
       BufferedImage bufImg = null;  
       try {  
           Qrcode qrcodeHandler = new Qrcode();  
@@ -114,7 +140,7 @@ public class TwoDimensionCode {
           // 设置设置二维码尺寸，取值范围1-40，值越大尺寸越大，可存储的信息越大  
           qrcodeHandler.setQrcodeVersion(size);  
           // 获得内容的字节数组，设置编码格式  
-          byte[] contentBytes = content.getBytes("utf-8");  
+          //byte[] contentBytes = content.getBytes("utf-8");  
           // 图片尺寸  
           int imgSize = 67 + 12 * (size - 1);  
           bufImg = new BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_RGB);  
@@ -194,23 +220,4 @@ public class TwoDimensionCode {
       return content;  
   }  
 
-  public static void main(String[] args) {  
-      String imgPath = "G:/TDDOWNLOAD/Michael_QRCode.png";  
-      String encoderContent = "Hello 大大、小小,welcome to QRCode!" + "\nMyblog [ http://sjsky.iteye.com ]" + "\nEMail [ sjsky007@gmail.com ]";  
-      TwoDimensionCode handler = new TwoDimensionCode();  
-      handler.encoderQRCode(encoderContent, imgPath, "png");  
-//      try {  
-//          OutputStream output = new FileOutputStream(imgPath);  
-//          handler.encoderQRCode(content, output);  
-//      } catch (Exception e) {  
-//          e.printStackTrace();  
-//      }  
-      System.out.println("========encoder success");  
-        
-        
-      String decoderContent = handler.decoderQRCode(imgPath);  
-      System.out.println("解析结果如下：");  
-      System.out.println(decoderContent);  
-      System.out.println("========decoder success!!!");  
-  }
-  }
+}
