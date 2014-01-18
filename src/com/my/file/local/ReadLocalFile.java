@@ -1,4 +1,4 @@
-package com.my.file.localfile;
+package com.my.file.local;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -14,7 +14,7 @@ import java.util.Properties;
  * made by dyong 
  * date 2008-11-12 下午04:26:03
  **/
-public class ReadLocalFileMethod {
+public class ReadLocalFile {
 
 	/**
 	 * 读取.properties配置文件。
@@ -22,20 +22,19 @@ public class ReadLocalFileMethod {
 	 * @return 返回哈西表。
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
-	public static HashMap readPropertiesFile(String filepath)
+	public static HashMap<String,String> readPropertiesFile(String filepath)
 	throws IOException{
 		Properties p = new Properties();
-		p.load(ReadLocalFileMethod.class.getResourceAsStream(filepath));
+		p.load(ReadLocalFile.class.getResourceAsStream(filepath));
 		
 		p.setProperty("root", "bbb");
 		
-		Enumeration enu = p.propertyNames() ;
-		HashMap hashmap = new HashMap() ;
+		Enumeration<?> enu = p.propertyNames() ;
+		HashMap<String,String> hashmap = new HashMap<String,String>() ;
 		while(enu.hasMoreElements()){
 			String name = enu.nextElement().toString() ;
 			hashmap.put(name,p.getProperty(name)) ;
-			System.out.println("===>"+name+"  "+p.getProperty(name));
+//			System.out.println("===>"+name+"  "+p.getProperty(name));
 		}
 		return hashmap ;
 	}
@@ -48,7 +47,7 @@ public class ReadLocalFileMethod {
 	 * @throws Exception
 	 */
 	public static String readLocalFile(String filepath)
-		throws Exception{
+		throws IOException{
 		try {
 			FileReader fr = new FileReader(filepath);
 			String record = "";
@@ -61,12 +60,16 @@ public class ReadLocalFileMethod {
 			fr.close();
 			br.close();
 			return sb.toString() ;
-		}catch(Exception e){
-			throw new Exception("readLocalFile err:"+e.getMessage()) ;
+		}catch(IOException e){
+			throw new IOException("readLocalFile err:"+e.getMessage()) ;
 		}
 	}
-	public static String readLocalFile(String filepath,String code)
-	throws Exception{
+	public static String readLocalFile2(String filepath)
+			throws IOException{
+		return readLocalFile2(filepath,"utf-8") ;
+	}
+	public static String readLocalFile2(String filepath,String code)
+	throws IOException{
 		try {
 			InputStream is = new FileInputStream(filepath);
 			InputStreamReader isr = new InputStreamReader(is,code);   
@@ -81,8 +84,8 @@ public class ReadLocalFileMethod {
 			isr.close();
 			br.close();
 			return sb.toString() ;
-		}catch(Exception e){
-			throw new Exception("readLocalFile err:"+e.getMessage()) ;
+		}catch(IOException e){
+			throw new IOException("readLocalFile err:"+e.getMessage()) ;
 		}
 	}
 	
@@ -93,17 +96,16 @@ public class ReadLocalFileMethod {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String readLocalFile2(String path,String code)
-	throws Exception {
-		String filepath = ReadLocalFileMethod.class.getResource(path).getFile();
-		return readLocalFile(filepath,code) ;
+	public static String readLocalFile3(String path)
+			throws IOException{
+		return readLocalFile3(path,"utf-8") ;
 	}
-	public static String readLocalFile2(String path)
-	throws IOException {
+	public static String readLocalFile3(String path,String code)
+			throws IOException {
 //		会有缓存，第二次调用方法不会重新读取文件。
 //		getResourceAsStream将文件读入缓存，无法重新加载文件。
-		InputStream is = ReadLocalFileMethod.class.getResourceAsStream(path);
-		InputStreamReader isr = new InputStreamReader(is,"utf-8");   
+		InputStream is = ReadLocalFile.class.getResourceAsStream(path);
+		InputStreamReader isr = new InputStreamReader(is,code);   
 		BufferedReader br = new BufferedReader(isr);
 		
 		String record = "";
@@ -116,5 +118,11 @@ public class ReadLocalFileMethod {
 		is.close();
 		return sb.toString() ;
 	}
+	public static String readLocalFile4(String path,String code)
+	throws IOException {
+		String filepath = ReadLocalFile.class.getResource(path).getFile();
+		return readLocalFile2(filepath,code) ;
+	}
+	
 	
 }
