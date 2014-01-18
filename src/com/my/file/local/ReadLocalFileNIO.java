@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * made by dyong 
- * date 2008-11-12 下午04:26:03
+ * 读取本地资源文件 NIO
  **/
 public class ReadLocalFileNIO {
 
@@ -20,11 +20,11 @@ public class ReadLocalFileNIO {
      * @return
      * @throws IOException 
      */
-    public ArrayList<String> readLocalFile(String filepath)
+    public static ArrayList<String> readLocalFile2(String filepath)
     		throws IOException{
-    	return readLocalFile(filepath,"utf-8") ;
+    	return readLocalFile2(filepath,"utf-8") ;
     }
-    public ArrayList<String> readLocalFile(String filepath,String code)
+    public static ArrayList<String> readLocalFile2(String filepath,String code)
     		throws IOException{
 		try {
 			ArrayList<String> list = new ArrayList<String>();
@@ -50,11 +50,11 @@ public class ReadLocalFileNIO {
      * @return
      * @throws IOException
      */
-    public ArrayList<String> readLocalFile2(String filepath)
+    public static ArrayList<String> readLocalFile(String filepath)
     		throws IOException{
-    	return readLocalFile2(filepath,"utf-8") ;
+    	return readLocalFile(filepath,"utf-8") ;
     }
-    public ArrayList<String> readLocalFile2(String filepath,String code)
+    public static ArrayList<String> readLocalFile(String filepath,String code)
     		throws IOException{
 		try {
 	    	ArrayList<String> list = new ArrayList<String>();

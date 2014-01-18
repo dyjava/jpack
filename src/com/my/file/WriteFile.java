@@ -13,7 +13,7 @@ import java.net.URL;
 
 /**
  * made by dyong 
- * date 2008-11-19 10:15:13
+ * 写入本地文件
  **/
 public class WriteFile {
 

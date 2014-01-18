@@ -16,7 +16,7 @@ public class ReadLocalFileTest {
 	@Test
 	public void readPropertiesFileTest() {
 		try {
-			HashMap<String, String> hashmap = ReadLocalFile.readPropertiesFile("/com/my/config/log4j.properties") ;
+			HashMap<String, String> hashmap = ReadLocalFile.readPropertiesFile("/log4j.properties") ;
 			
 			System.out.println("=======readPropertiesFileTest========") ;
 			for(String map:hashmap.keySet()){

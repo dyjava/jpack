@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="lib/commons-io-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.5.jar"/>
 	<classpathentry kind="lib" path="lib/commons-pool-1.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

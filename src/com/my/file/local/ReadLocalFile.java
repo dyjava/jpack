@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  * made by dyong 
- * date 2008-11-12 下午04:26:03
+ * 读取本地资源文件
  **/
 public class ReadLocalFile {
 
