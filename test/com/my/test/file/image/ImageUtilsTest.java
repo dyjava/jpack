@@ -11,12 +11,13 @@ import org.junit.Test;
 import com.my.file.image.ImageUtils;
 
 public class ImageUtilsTest {
-	private String path = "e:/img/" ;
+	private String inpath = "e:/img/" ;
+	private String outpath = "e:/img/imageutilsDeal/" ;
 	private File src  ;
 	private byte[] bytes = null ;
 
 	public ImageUtilsTest(){
-		src = new File(path+"0.jpg") ;
+		src = new File(inpath+"0.jpg") ;
 		bytes = ImageUtils.scale(src, 2, true);//测试OK
 	}
 	
@@ -26,7 +27,7 @@ public class ImageUtilsTest {
 	 */
 	@Test
 	public void scale1Test(){
-		ImageUtils.scale(src, path+"scale1Test.jpg", 2, true);//测试OK
+		ImageUtils.scale(src, outpath+"scale1Test.jpg", 2, true);//测试OK
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class ImageUtilsTest {
 	 */
 	@Test
 	public void scale11Test(){
-		ImageUtils.scale(src, path+"scale11Test.jpg", 2, false);//测试OK
+		ImageUtils.scale(src, outpath+"scale11Test.jpg", 2, false);//测试OK
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class ImageUtilsTest {
 	@Test
 	public void scale12Test(){
 		byte[] bytes = ImageUtils.scale(src, 2, true);//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"scale12Test.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"scale12Test.jpg")) ;
 	}
 	
 	
@@ -56,7 +57,7 @@ public class ImageUtilsTest {
 	@Test
 	public void scale2Test(){
 		bytes = ImageUtils.scale2(src, 500, 300, true);//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"scale2Test.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"scale2Test.jpg")) ;
 	}
 	
 	/**
@@ -66,7 +67,7 @@ public class ImageUtilsTest {
 	@Test
 	public void cutTest(){
 		bytes = ImageUtils.cut(src, 0, 0, 400, 400 );//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"cutTest.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"cutTest.jpg")) ;
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class ImageUtilsTest {
 		List<ByteArrayOutputStream> list = ImageUtils.cut2(src, 2, 2 ) ;//测试OK
 		int i=0 ;
         for(ByteArrayOutputStream stream:list){
-        	ImageUtils.byteOut2File(stream.toByteArray(), new File(path+"cut1Test_"+i+++".jpg")) ;
+        	ImageUtils.byteOut2File(stream.toByteArray(), new File(outpath+"cut1Test_"+i+++".jpg")) ;
         }
 	}
 
@@ -91,7 +92,7 @@ public class ImageUtilsTest {
 		List<ByteArrayOutputStream> list = ImageUtils.cut3(src, 300, 300 );//测试OK
 		int i=0 ;
         for(ByteArrayOutputStream stream:list){
-        	ImageUtils.byteOut2File(stream.toByteArray(), new File(path+"cut2Test_"+i+++".jpg")) ;
+        	ImageUtils.byteOut2File(stream.toByteArray(), new File(outpath+"cut2Test_"+i+++".jpg")) ;
         }
 	}
 	
@@ -101,7 +102,7 @@ public class ImageUtilsTest {
 	@Test
 	public void convertTest(){
 		bytes = ImageUtils.convert(src, "GIF" );//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"convertTest.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"convertTest.jpg")) ;
 	}
 	
 	/**
@@ -110,7 +111,7 @@ public class ImageUtilsTest {
 	@Test
 	public void grayTest(){
 		bytes = ImageUtils.gray(src );//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"grayTest.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"grayTest.jpg")) ;
 	}
 
 	/**
@@ -119,7 +120,7 @@ public class ImageUtilsTest {
 	@Test
 	public void pressTextTest(){
 		bytes = ImageUtils.pressText("我是水印文字",src, "宋体",Font.BOLD,Color.white,80, 0, 0, 0.5f);//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"pressTextTest.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"pressTextTest.jpg")) ;
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class ImageUtilsTest {
 	@Test
 	public void pressText2Test(){
 		bytes = ImageUtils.pressText2("我也是水印文字", src , "黑体", 36, Color.white, 80, 0, 0, 0.5f);//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"pressText2Test.jpg")) ;
+		ImageUtils.byteOut2File(bytes,new File(outpath+"pressText2Test.jpg")) ;
 	}
 	
 	/**
@@ -137,8 +138,8 @@ public class ImageUtilsTest {
 	 */
 	@Test
 	public void pressImageTest(){
-		bytes = ImageUtils.pressImage(new File(path+"1.jpg"), src , 0, 0, 0.5f);//测试OK
-		ImageUtils.byteOut2File(bytes,new File(path+"pressImageTest.jpg")) ;
+		bytes = ImageUtils.pressImage(new File(inpath+"1.jpg"), src , 0, 0, 0.5f);//测试OK
+		ImageUtils.byteOut2File(bytes,new File(outpath+"pressImageTest.jpg")) ;
 	}
 
 }

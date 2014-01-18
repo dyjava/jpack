@@ -31,7 +31,7 @@ public class TwoDimensionCode {
 	 * @throws UnsupportedEncodingException 
 	 */
 	public void encoderQRCode(String content, String imgPath) throws UnsupportedEncodingException {
-		this.encoderQRCode(content, imgPath, "jpg", 7);
+		this.encoderQRCode(content, imgPath, "jpg", 10);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TwoDimensionCode {
 	 * @throws UnsupportedEncodingException 
 	 */
 	public void encoderQRCode(String content, OutputStream output) throws UnsupportedEncodingException {
-		this.encoderQRCode(content, output, "jpg", 7);
+		this.encoderQRCode(content, output, "jpg", 10);
 	}
 
 	public void encoderQRCode(byte[] content, String imgPath) throws UnsupportedEncodingException {  
@@ -118,7 +118,7 @@ public class TwoDimensionCode {
           BufferedImage bufImg = this.qRCodeCommon(content.getBytes("utf-8"), imgType, size);  
           // 生成二维码QRCode图片  
           ImageIO.write(bufImg, imgType, output);  
-      } catch (Exception e) {  
+      } catch (Exception e) {
           e.printStackTrace();  
       }  
   }  
