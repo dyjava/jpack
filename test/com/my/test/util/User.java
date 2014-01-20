@@ -2,6 +2,7 @@ package com.my.test.util;
 
 //json解析对象，必须是public的对象
 public class User {
+	
 	public String name ;
 	public int age ;
 	public String getName() {

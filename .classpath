@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/commons-pool-1.5.2.jar"/>
 	<classpathentry kind="lib" path="lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk13.jar"/>
+	<classpathentry kind="lib" path="lib/xom-1.2.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
