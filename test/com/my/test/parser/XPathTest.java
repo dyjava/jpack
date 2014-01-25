@@ -15,6 +15,7 @@ public class XPathTest {
 	public void test() {
 		String url = "http://www.lz13.cn/ganenlizhi/20296.html" ;
 		url = "http://www.lz13.cn/ganenlizhi/8290.html" ;
+		url = "http://www.lz13.cn/lizhimingyan/17127.html";
 		String path = "e:/img/txt/" ;
 		
 		int i=0 ;
