@@ -19,12 +19,7 @@ public class XPath {
 	private TagNode rootNode ;
 	
 	public static XPath getInstens(String content){
-		try {
-			xpath.rootNode = xpath.cleaner.clean(content);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		xpath.rootNode = xpath.cleaner.clean(content);
 		return xpath ;
 	}
 

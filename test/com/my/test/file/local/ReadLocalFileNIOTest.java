@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.my.file.local.ReadLocalFileNIO;
 
 public class ReadLocalFileNIOTest {
-	private String path = "e:/img/" ;
+	private String path = "e:/data/" ;
 //	private String code = "gbk" ;
 	
 	@Test

@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.my.file.local.ReadLocalFile;
 
 public class ReadLocalFileTest {
-	private String path = "e:/img/" ;
+	private String path = "e:/data/" ;
 	private String code = "gbk" ;
 	
 	@Test

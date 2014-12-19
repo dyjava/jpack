@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.my.file.WriteFile;
 
 public class WriteFileTest {
-	private String path = "e:/img/" ;
+	private String path = "e:/data/" ;
 	
 	@Test
 	public void StringWriteToFileTest() {

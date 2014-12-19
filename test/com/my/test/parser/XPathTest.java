@@ -1,12 +1,13 @@
 package com.my.test.parser;
 
 
+import java.io.File;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.my.file.WriteFile;
-import com.my.file.web.MyHttpClient;
+import com.my.file.web.HttpClientUtil2;
 import com.my.parser.XPath;
 
 public class XPathTest {
@@ -16,7 +17,11 @@ public class XPathTest {
 		String url = "http://www.lz13.cn/ganenlizhi/20296.html" ;
 		url = "http://www.lz13.cn/ganenlizhi/8290.html" ;
 		url = "http://www.lz13.cn/lizhimingyan/17127.html";
-		String path = "e:/img/txt/" ;
+		String path = "e:/data/txt/" ;
+		File dir = new File(path) ;
+		if(!dir.exists()){
+			dir.mkdirs() ;
+		}
 		
 		int i=0 ;
 		while(url.trim().length()>0){
@@ -24,7 +29,7 @@ public class XPathTest {
 			if(i==100){
 				return ;
 			}
-			String content = MyHttpClient.getInstance().getUrlContent(url,"utf-8",false) ;
+			String content = HttpClientUtil2.getInstance().getUrlContent(url,"utf-8",false) ;
 			XPath test = XPath.getInstens(content) ;
 			
 			try{

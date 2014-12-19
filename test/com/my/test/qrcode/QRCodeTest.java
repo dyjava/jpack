@@ -13,9 +13,9 @@ import com.my.file.image.ImageUtils;
 import com.my.qrcode.TwoDimensionCode;
 
 public class QRCodeTest {
-	private String imgpath = "e:/img/" ;
+	private String imgpath = "e:/data/" ;
 	public QRCodeTest(){
-		imgpath = "e:/img/";
+		
 	}
 	
 	@Test

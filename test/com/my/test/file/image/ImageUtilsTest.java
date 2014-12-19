@@ -11,14 +11,19 @@ import org.junit.Test;
 import com.my.file.image.ImageUtils;
 
 public class ImageUtilsTest {
-	private String inpath = "e:/img/" ;
-	private String outpath = "e:/img/imageutilsDeal/" ;
+	private String inpath = "e:/data/0.jpg" ;			//处理的图片
+	private String presspath = "e:/data/1.jpg" ;		//水印图片
+	private String outpath = "e:/data/imageutilsDeal/" ;//处理结果存放地址
 	private File src  ;
 	private byte[] bytes = null ;
 
 	public ImageUtilsTest(){
-		src = new File(inpath+"0.jpg") ;
+		src = new File(inpath) ;
 		bytes = ImageUtils.scale(src, 2, true);//测试OK
+		File dir = new File(outpath) ;
+		if(!dir.exists()){
+			dir.mkdirs() ;
+		}
 	}
 	
 	/**
@@ -138,7 +143,7 @@ public class ImageUtilsTest {
 	 */
 	@Test
 	public void pressImageTest(){
-		bytes = ImageUtils.pressImage(new File(inpath+"1.jpg"), src , 0, 0, 0.5f);//测试OK
+		bytes = ImageUtils.pressImage(new File(presspath), src , 0, 0, 0.5f);//测试OK
 		ImageUtils.byteOut2File(bytes,new File(outpath+"pressImageTest.jpg")) ;
 	}
 
