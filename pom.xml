@@ -129,10 +129,10 @@
 	<!-- 被编译过的应用程序class文件存放的目录。 -->
 	<outputDirectory>${basedir}/bin/classes</outputDirectory>
 	
-	<!-- 
+	<!--  -->
 	<testSourceDirectory>${basedir}/test</testSourceDirectory>
-	<testOutputDirectory>${basedir}/bin/test/classes</testOutputDirectory>
-	 -->
+	<testOutputDirectory>${basedir}/bin/classes</testOutputDirectory>
+	
 	<!-- ###################### -->
 	<!-- 这个元素描述了项目相关的所有资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里。 -->
 	<resources>
