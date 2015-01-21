@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 //json解析对象，必须是public的对象
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "result") 
+@XmlRootElement(name = "user") 
 public class User {
 	
 	public String name ;

@@ -28,13 +28,15 @@ public class XmlUtils2 {
 	public static String obj2xml(Object obj){
 		return obj2xml(obj, null) ;
 	}
-	private static final String root = "allresult" ;
+	private static String root = "allresult" ;
 	public static String obj2xml(Object obj, List<String> reg){
 		if(reg==null){
 			reg = new ArrayList<String>() ;
 		}
 		StringBuffer xml = new StringBuffer("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n") ;
-		
+		if(!isBase(obj) && !isSet(obj)){
+			root = obj.getClass().getSimpleName().toLowerCase() ;
+		}
 		objectItem2XML(obj, xml, reg, root) ;
 		return xml.toString() ;
 	}
@@ -99,21 +101,31 @@ public class XmlUtils2 {
 		} else {
 			xml.append(obj) ;
 		}
-		xml.append("</").append(tagname).append(">") ;
+		xml.append("</").append(tagname).append(">\r\n") ;
 	}
 	
+	//基础数据类型
 	private static boolean isBase(Object obj){
 		if(isNum(obj) || isString(obj) || isBoolean(obj)){
 			return true ;
 		}
 		return false ;
 	}
+	//集合类型
+	private static boolean isSet(Object obj){
+		if(obj instanceof Map || obj instanceof Collection){
+			return true ;
+		}
+		return false ;
+	}
+	//数字
 	private static boolean isNum(Object obj){
 		if(obj instanceof Integer || obj instanceof Long || obj instanceof Double){
 			return true ;
 		}
 		return false ;
 	}
+	//字符串
 	private static boolean isString(Object obj){
 		if(obj instanceof String){
 			return true ;
