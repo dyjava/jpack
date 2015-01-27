@@ -93,10 +93,17 @@ public class XmlUtils2 {
 			xml.append("</"+parentname+">\r\n") ;
 		}
 	}
-	
+	//基础数据类型输出XML
 	private static void apendXML(Object obj, StringBuffer xml, String tagname){
+		//纯数字的标签名，前面加_
+		if(tagname.matches("\\d+")){
+			tagname = "_"+tagname ;
+		}
 		xml.append("<").append(tagname).append(">") ;
-		if(isString(obj)){
+		//字符串加cdata
+		if(obj==null){
+			xml.append("") ;
+		} else if(isString(obj)){
 			xml.append("<![CDATA[").append(obj).append("]]>") ;
 		} else {
 			xml.append(obj) ;
@@ -106,7 +113,7 @@ public class XmlUtils2 {
 	
 	//基础数据类型
 	private static boolean isBase(Object obj){
-		if(isNum(obj) || isString(obj) || isBoolean(obj)){
+		if(isNum(obj) || isString(obj) || isBoolean(obj) || obj==null){
 			return true ;
 		}
 		return false ;
