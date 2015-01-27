@@ -15,7 +15,7 @@ public class IP {
         NetworkInterface ni = NetworkInterface.getByInetAddress(address);
         ni.getInetAddresses().nextElement().getAddress();
         byte[] mac = ni.getHardwareAddress();
-        String sIP = address.getHostName()+address.getHostAddress();
+        String sIP = address.getHostName()+"\t"+address.getHostAddress();
         String sMAC = "";
         Formatter formatter = new Formatter();
         for (int i = 0; i < mac.length; i++) {
