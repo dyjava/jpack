@@ -104,7 +104,9 @@ public class XmlUtils2 {
 		if(obj==null){
 			xml.append("") ;
 		} else if(isString(obj)){
-			xml.append("<![CDATA[").append(obj).append("]]>") ;
+			if(obj.toString().trim().length()>0){
+				xml.append("<![CDATA[").append(obj).append("]]>") ;
+			}
 		} else {
 			xml.append(obj) ;
 		}
