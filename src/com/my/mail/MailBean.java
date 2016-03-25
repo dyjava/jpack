@@ -1,12 +1,13 @@
 package com.my.mail;
 
 public class MailBean {
-	private String mailBody = "this is a test mail";	//发送内容
 	private String mailTitle = "send mail";				//邮件标题
+	private String mailBody = "this is a test mail";	//发送内容
 	private String file = "";							//附件地址
 	
 	private String to = "";						//收件人邮箱，多收件人用逗号分割
 	private String copyto = "" ;				//抄送人邮箱
+	private String bcopyto = "" ;				//暗送人邮箱
 	private String from = "system";				//发件人邮箱，匿名发送时显示发送人信息。
 	private String usr = ""; 					//发件人用户名
 	private String pwd = "";					//密码
@@ -73,6 +74,12 @@ public class MailBean {
 	}
 	public void setUsr(String usr) {
 		this.usr = usr;
+	}
+	public String getBcopyto() {
+		return bcopyto;
+	}
+	public void setBcopyto(String bcopyto) {
+		this.bcopyto = bcopyto;
 	}
 	
 }

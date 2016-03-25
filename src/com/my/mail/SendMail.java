@@ -151,6 +151,18 @@ public class SendMail {
 		}
 	}
 
+	public boolean setBCopyTo(String bcopyto){
+		if(bcopyto == null){
+			return false;
+		}
+		try{
+			mimeMsg.setRecipients(Message.RecipientType.BCC,(Address[])InternetAddress.parse(bcopyto));
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+
 	public boolean sendout(){
 		try{
 			mimeMsg.setContent(mp);
@@ -195,6 +207,7 @@ public class SendMail {
 		themail.setFrom(mb.getFrom());
 		themail.setTo(mb.getTo());
 		themail.setCopyTo(mb.getCopyto());
+		themail.setBCopyTo(mb.getBcopyto());
 		themail.setNamePass(mb.getUsr(),mb.getPwd());
 		
 		themail.sendout();
