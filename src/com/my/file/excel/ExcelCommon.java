@@ -30,6 +30,17 @@ public class ExcelCommon {
 			 单元格位置是第二列，第一行，值为789.123*/
 			jxl.write.Number number = new jxl.write.Number(1, 0, 123);
 			sheet.addCell(number);
+
+			// 作用是从(m,n)到(p,q)的单元格全部合并
+			//WritableSheet.mergeCells(int  m, int  n, int  p, int  q);    
+			// 合并第一列第一行到第六列第一行的所有单元格    
+			sheet.mergeCells( 0 , 0 , 5 , 0 );
+			
+			// 将第一行的高度设为200    
+			sheet.setRowView( 0 , 200 );
+			// 将第一列的宽度设为30    
+			sheet.setColumnView( 0 , 30 );
+			
 			//写入数据并关闭文件
 			book.write();
 			book.close();
@@ -53,6 +64,8 @@ public class ExcelCommon {
 			Cell cell = sheet.getCell(0, 0);
 			String result = cell.getContents();
 			System.out.println(result);
+			
+			
 			book.close();
 		} catch (Exception e) {
 			System.out.println(e);
